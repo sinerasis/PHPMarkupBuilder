@@ -1,23 +1,15 @@
 <?php
-function BuildMarkup($tag, $attributes = false, $content = false, $end_tag = true) {
-	// opening tag
-	$html = '<' . $tag;
-	// attributes
-	if(!empty($attributes) && is_array($attributes)) {
-		foreach($attributes as $attribute=>$value) {
-			$html .= ' ' . $attribute . '="' . $value . '"';
-		}
-	}
-	// content
-	if($content !== false) {
-		$html .= '>' . $content;
-	} else {
-		$html .= '>';
-	}
-	// closure
-	if($end_tag === true) {
-		$html .= '</' . $tag . '>';
-	}
-	return $html;
+// string BuildMarkup(string $tag[, mixed $attributes, mixed $content, boolean $close])
+function BuildMarkup($tag, $attributes = false, $content = false, $close = false) {
+	$open = $tag;
+	if(is_array($attributes) && !empty($attributes)) foreach($attributes as $attribute => $value) $open .= ' ' . $attribute . '="' . $value . '"';
+	return '<' . $open . '>' . (($content !== false) ? $content: '') . (($close === true) ? '</' . $tag . '>': '');
+}
+
+// string BuildCSS(array $properties)
+function BuildCSS($properties) {
+	$css = '';
+	if(is_array($properties) && !empty($properties)) foreach($properties as $property => $value) $css .= $property . ':' . $value . ';';
+	return $css;
 }
 ?>
