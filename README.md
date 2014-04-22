@@ -1,4 +1,4 @@
-PHPMarkupBuilder
+markup-builder
 ================
 
-Simple function to create standard HTML markup with PHP.
+Simple functions to create standard HTML with PHP.
